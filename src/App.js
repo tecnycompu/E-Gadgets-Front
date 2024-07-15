@@ -13,6 +13,7 @@ import { setUserDetails } from './store/userSlice';
 
 function App() {
   const dispatch = useDispatch()
+
   const fetchUserDetails = async () => {
     const dataResponse = await fetch(SummaryApi.current_user.url, {
       method: SummaryApi.current_user.method,
@@ -24,7 +25,6 @@ function App() {
       dispatch(setUserDetails(dataApi.data))
     }
 
-    console.log("data-user", dataResponse)
   }
 
 
