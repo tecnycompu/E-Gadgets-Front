@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Context from '../context';
 
 const Login = () => {
-    const [showPassword, setShowPassword] =useState(false)
+    const [showPassword, setShowPassword] = useState(false)
     const [data,setData] = useState({
         email : "",
         password : ""
@@ -16,8 +16,6 @@ const Login = () => {
 
     const navigate = useNavigate()
     const {fetchUserDetails} = useContext(Context)
-
-    //console.log("generalContext",generalContext.fetchUserDetails())
 
     const handleOnChange = (e) => {
         const { name , value} = e.target
@@ -114,7 +112,6 @@ const Login = () => {
                     </form>
                         <p className='my-5'>No tengo cuenta ? <Link to={"/sign-up"} className='text-red-600 hover:text-red-700 hover:underline'>Inscribirse</Link> </p>
                 </div>
-
 
             </div>
         </section>

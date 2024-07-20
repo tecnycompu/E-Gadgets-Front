@@ -8,11 +8,12 @@ import ROLE from '../common/role';
 const AdminPanel = () => {
   const user = useSelector(state => state?.user?.user)
   const navigate = useNavigate()
-  useEffect(()=>{
-    if(user?.role !== ROLE.ADMIN){
+
+  useEffect(() => {
+    if (user?.role !== ROLE.ADMIN) {
       navigate("/")
     }
-  },[user])
+  }, [user])
 
   return (
     <div className='min-h-[calc(100vh-120px)] md:flex hidden'>
@@ -28,18 +29,21 @@ const AdminPanel = () => {
             }
           </div>
           <p className='capitalize text-lg font-semibold'>{user?.name}</p>
-          <p className='text-sm'>{user?.role}</p>       
+          <p className='text-sm'>{user?.role}</p>
         </div>
+
+        {/**** Navegación */}
+
         <div>
-          {/**** Navegación */}
-          <div className='grid p-4'>
+          <nav className='grid p-4'>
             <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>Todos los Usuarios</Link>
             <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100'>Todos los Productos</Link>
-          </div>
+          </nav>
         </div>
       </aside>
+      
       <main className='w-full h-full p-2'>
-        <Outlet/>
+        <Outlet />
       </main>
     </div>
   )
