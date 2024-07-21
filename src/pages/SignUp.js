@@ -39,7 +39,7 @@ const SignUp = () => {
     
     const allowedTypes = ['image/jpeg', 'image/png'];
     if (!allowedTypes.includes(file.type)) {
-      toast.error("Only JPG and PNG files are allowed");
+      toast.error("Sólo se permiten archivos JPG y PNG");
       return;
     }
 
