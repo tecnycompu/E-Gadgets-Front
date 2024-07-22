@@ -81,7 +81,7 @@ Agradecemos a todos los colaboradores y a la comunidad de desarrolladores que ha
 | **Clonar el repositorio** | `git clone https://github.com/tecnycompu/E-Gadgets-Front.git` |
 | **Navegar al directorio** | `cd E-Gadgets-Front`                                         |
 | **Instalar dependencias** | `npm install`                                                |
-| **Ejecutar el proyecto**  | `npm run dev`                                                |
+| **Ejecutar el proyecto**  | `npm start`                                                |
 
 ## 🔗 Repositorio
 
