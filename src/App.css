@@ -13,3 +13,9 @@
 .userTable td{
     @apply border text-base  text-center
 }
+
+/*** Barra de desplazamiento oculta ***/
+
+.scrollbar-none::-webkit-scrollbar{
+    display: none;
+}
