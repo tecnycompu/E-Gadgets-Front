@@ -55,7 +55,7 @@ const BannerProduct = () => {
 
             },5000)
             return ()=> clearInterval(interval)
-        },[])
+        },[currentImage])
 
     return (
     <div className='container mx-auto rounded '>
