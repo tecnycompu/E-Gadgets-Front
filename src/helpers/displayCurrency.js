@@ -1,11 +1,12 @@
 const displayINRCurrency = (num) => {
-    const formatter = new Intl.NumberFormat('en-IN',{
-        style : "currency",
-        currency : 'COP',
-        minimumFractionDigits : 2
-    })
+    const formatter = new Intl.NumberFormat('es-CO', {
+        style: "currency",
+        currency: 'COP',
+        minimumFractionDigits: 0
+    });
 
-    return formatter.format(num)
+    return formatter.format(num);
 }
+
 
 export default displayINRCurrency
