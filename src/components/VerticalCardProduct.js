@@ -3,7 +3,7 @@ import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct'
 import displayINRCurrency from '../helpers/displayCurrency'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 
-const HorizontalCardProduct = ({category, heading}) => {
+const VerticalCardProduct = ({category, heading}) => {
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(false)
     const loadingList = new Array(13).fill(null)
@@ -70,4 +70,4 @@ const HorizontalCardProduct = ({category, heading}) => {
   )
 }
 
-export default HorizontalCardProduct
+export default VerticalCardProduct
