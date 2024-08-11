@@ -1,6 +1,6 @@
 const productCategory = [
     {id : 1, label : "Airpodes", value : "airpodes"},
-    {id : 2, label : "Camaras", value : "camera"},
+    {id : 2, label : "Cámaras", value : "camera"},
     {id : 3, label : "Auriculares", value : "earphones"},
     {id : 4, label : "Móviles", value : "mobiles"},
     {id : 5, label : "Mouse", value : "mouse"},
