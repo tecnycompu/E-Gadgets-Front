@@ -19,7 +19,6 @@ const ProductDetails = () => {
   console.log ("product id",params)
 
   const fetchProductDetails = async()=>{
-    //setLoading(true)
     const response = await fetch(SummaryApi.productDetails.url,{
       method : SummaryApi.productDetails.method,
       headers : {
@@ -30,6 +29,7 @@ const ProductDetails = () => {
       })
     })
 
+   //setLoading(false)
     const dataResponse = await response.json() 
 
     setData(dataResponse?.data)
@@ -44,23 +44,42 @@ const ProductDetails = () => {
   return (
     <div className='container mx-auto p-4'>
 
-      <div className='min-h-[200px]'>
+      <div className='min-h-[200px] flex flex-col lg:flex-row'>
         {/*** Imagen Producto */}
-        <div>
-            <div className=''>
+        <div className='h-96 flex flex-col lg:flex-row-reverse'>
+
+            <div className='h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200'>
+              image
+            </div>
+
+            <div className='h-full'>
               {
                 loading ? (
-                  productImageListLoading.map(el =>{
-                    return(
-                      <div className='h-20 w-20 bg-slate-200 rounded'>
+                    <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full'>
+                      {
+                         productImageListLoading.map(el =>{
+                           return(
+                              <div className='h-20 w-20 bg-slate-200 rounded animate-pulse' key={"loadingImage"}>
+                   
+                              </div>
+                           )
+                         })
+                      }
+                    </div>
 
-                      </div>
-                    )
-                  })
                 ) : (
-                  <div>
-
-                  </div>
+                  <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full'>
+                  {
+                     data.productImage.map((imgURL,index) =>{
+                       return(
+                          <div className='h-20 w-20 bg-slate-200 rounded' key={"imgURL"}>
+                            <img src ={imgURL} className='w-full h-full object-scale-down mix-blend-multiply'/>
+               
+                          </div>
+                       )
+                     })
+                  }
+                </div>
                 )
 
               }
@@ -69,7 +88,7 @@ const ProductDetails = () => {
 
         {/*** Detalles Producto */}
         <div>
-
+              Product details
         </div>
       </div>
 
