@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import SummaryApi from '../common'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 import displayINRCurrency from '../helpers/displayCurrency';
+import VerticalCardProduct from '../components/VerticalCardProduct';
+import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay';
 
 const ProductDetails = () => {
   const [data, setData] = useState({
@@ -24,6 +26,7 @@ const ProductDetails = () => {
       x : 0,
       y : 0
   })
+  const [zoomImage,setZoomImage] = useState(false)
 
   console.log("product id", params)
 
@@ -55,17 +58,22 @@ const ProductDetails = () => {
     setActiveImage(imageURL)
   }
 
-  const handleZoomImage= (e) =>{
+  const handleZoomImage= useCallback((e) =>{
+    setZoomImage(true)
     const { left , top, width , height } = e.target.getBoundingClientRect()
     console.log("coordinate", left, top , width , height)
 
-    const x = (e.clientX - left) * width 
-    const y = (e.clientY - top) * height 
+    const x = (e.clientX - left) / width 
+    const y = (e.clientY - top) / height 
 
     setZoomImageCoordinate({
       x,
       y 
     })
+  },[zoomImageCoordinate])
+
+  const handleLeaveImageZoom = ()=>{
+    setZoomImage(false)
   }
 
   return (
@@ -75,22 +83,27 @@ const ProductDetails = () => {
         {/*** Imagen Producto */}
         <div className='h-96 flex flex-col lg:flex-row-reverse gap-4'>
 
-          <div className='h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
-            <img src={activeImage} className='h-full w-full object-scale-down mix-blend-multiply' onMouseEnter={handleZoomImage}/>
+          <div className='h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative p-2'>
+            <img src={activeImage} className='h-full w-full object-scale-down mix-blend-multiply' onMouseMove={handleZoomImage} onMouseLeave={handleLeaveImageZoom}/>
 
             {/** Imagen Zoom de Productos */}
-            <div className='hidden lg:block absolute min-w-[400px] min-h-[400px] bg-slate-200 p-1 -right-[410px] top-0'>
-              <div
-                className='w-full h-full min-h-[400px] min-w-[400px] mix-blend-multiply'
-                style={{
-                  backgroundImage : `url(${activeImage})`,
-                  backgroundRepeat : 'no-repeat',
-                  backgroundPosition : `${zoomImageCoordinate.x *100}% ${zoomImageCoordinate.y *100}%`
-                }}
-              >
-
+            {
+              zoomImage && (
+                <div className='hidden lg:block absolute min-w-[500px] overflow-hidden min-h-[400px] bg-slate-200 p-1 -right-[510px] top-0'>
+                <div
+                  className='w-full h-full min-h-[400px] min-w-[500px] mix-blend-multiply scale-150'
+                  style={{
+                    backgroundImage : `url(${activeImage})`,
+                    backgroundRepeat : 'no-repeat',
+                    backgroundPosition : `${zoomImageCoordinate.x *100}% ${zoomImageCoordinate.y *100}%`
+                  }}
+                >
+  
+                </div>
               </div>
-            </div>
+              )
+            }
+
 
           </div>
 
@@ -190,6 +203,13 @@ const ProductDetails = () => {
             )
         }
       </div>
+
+      {
+        data.category && (
+          <CategoryWiseProductDisplay category={data?.category} heading={"Producto Recomendado"}/>
+        )
+      }
+      
 
     </div>
   )
